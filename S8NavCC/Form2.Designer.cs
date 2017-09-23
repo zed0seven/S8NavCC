@@ -45,6 +45,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.upnotesbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -180,9 +181,10 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(5, 270);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(377, 13);
+            this.label12.Size = new System.Drawing.Size(424, 13);
             this.label12.TabIndex = 13;
-            this.label12.Text = "an error next time you\'re trying to change your Galaxy S8\'s Navigation bar color";
+            this.label12.Text = "an error next time you\'re trying to change your Galaxy S8 or Note 8\'s Navigation " +
+    "bar color";
             // 
             // label13
             // 
@@ -204,11 +206,22 @@
             this.label14.TabIndex = 15;
             this.label14.Text = "Phone status still says \'Device not found.\'";
             // 
+            // upnotesbtn
+            // 
+            this.upnotesbtn.Location = new System.Drawing.Point(448, 304);
+            this.upnotesbtn.Name = "upnotesbtn";
+            this.upnotesbtn.Size = new System.Drawing.Size(86, 23);
+            this.upnotesbtn.TabIndex = 16;
+            this.upnotesbtn.Text = "Update notes";
+            this.upnotesbtn.UseVisualStyleBackColor = true;
+            this.upnotesbtn.Click += new System.EventHandler(this.upnotesbtn_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 330);
+            this.Controls.Add(this.upnotesbtn);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -254,5 +267,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button upnotesbtn;
     }
 }

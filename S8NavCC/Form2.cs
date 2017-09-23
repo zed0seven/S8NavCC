@@ -37,5 +37,15 @@ namespace S8NavCC
         {
 
         }
+
+        private void upnotesbtn_Click(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+
+            UpdateNotes un = new UpdateNotes();
+            un.Show();
+            this.FormClosed += (s, args) => un.Close();
+            un.FormClosed += (s, args) => this.Enabled = true;
+        }
     }
 }

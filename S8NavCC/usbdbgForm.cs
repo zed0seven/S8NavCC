@@ -19,7 +19,7 @@ namespace S8NavCC
 
         private void usbdbgForm_Load(object sender, EventArgs e)
         {
-
+            this.MaximizeBox = false;
         }
     }
 }

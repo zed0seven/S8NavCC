@@ -50,6 +50,11 @@ namespace S8NavCC
             //MessageBox.Show(ex.ToString());
             if (done == true)
             {
+                const string REGISTRY_KEY = @"HKEY_CURRENT_USER\Software\S8NavCC";
+                const string REGISTY_VALUE = "FirstRun";
+                Microsoft.Win32.Registry.SetValue(REGISTRY_KEY, REGISTY_VALUE, 0, Microsoft.Win32.RegistryValueKind.DWord);
+
+
                 string currentdir = Directory.GetCurrentDirectory();
                 using (StreamWriter sw = new StreamWriter(Path.GetTempPath() + "/installupdate.bat"))
                 {
