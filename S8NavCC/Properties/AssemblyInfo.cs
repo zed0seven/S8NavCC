@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Samsung Galaxy S8 Navigation bar Color Changer")]
+[assembly: AssemblyTitle("Samsung Galaxy S8 Navigation Bar Color Changer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("zed0seven Inc,")]
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.7")]
-[assembly: AssemblyFileVersion("0.9.7")]
+[assembly: AssemblyVersion("0.9.8")]
+[assembly: AssemblyFileVersion("0.9.8")]
 [assembly: NeutralResourcesLanguage("en")]
 

@@ -11,6 +11,6 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartWorkingDirectory>E:\Google Drive\Coding Projects\Visual Studio Projects\S8NavCC\S8NavCC\bin\Debug\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Users\Hampus\Google Drive\Coding Projects\Visual Studio Projects\S8NavCC\S8NavCC\bin\Debug\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>

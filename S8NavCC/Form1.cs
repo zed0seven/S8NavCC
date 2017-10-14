@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.IO.Compression;
 using System.Threading;
+using System.Drawing.Imaging;
 
 namespace S8NavCC
 {
@@ -23,7 +24,7 @@ namespace S8NavCC
         }
         public static class GlobalVar
         {
-            public const string currentversion = "0.9.7";
+            public const string currentversion = "0.9.8";
         }
         #region BEGINNING INITIALIZING FUNCTIONS
         private void ToggleForms(int f, int g)
@@ -38,6 +39,7 @@ namespace S8NavCC
                     hexlinkbtn.Enabled = true;
                     blackpb.Enabled = true;
                     whitepb.Enabled = true;
+                    transppb.Enabled = true;
                 }
                 else if (g == 0)
                 {
@@ -46,6 +48,7 @@ namespace S8NavCC
                     hexlinkbtn.Enabled = false;
                     blackpb.Enabled = false;
                     whitepb.Enabled = false;
+                    transppb.Enabled = false;
                 }
             }
             else if (f == 2)    //gobtn
@@ -91,6 +94,7 @@ namespace S8NavCC
                     hexlinkbtn.Enabled = false;
                     blackpb.Enabled = false;
                     whitepb.Enabled = false;
+                    transppb.Enabled = false;
                 }
             }
             else if (f == 6)    //checkbtn, textBox1, gobtn, hexlinkbtn and appliedlbl
@@ -105,6 +109,7 @@ namespace S8NavCC
                     appliedlbl.Visible = true;
                     blackpb.Enabled = true;
                     whitepb.Enabled = true;
+                    transppb.Enabled = true;
                     updatechklbl.Visible = true;
                 }
                 else if (g == 0)
@@ -117,6 +122,7 @@ namespace S8NavCC
                     appliedlbl.Visible = false;
                     blackpb.Enabled = false;
                     whitepb.Enabled = false;
+                    transppb.Enabled = false;
                 }
             }
             else if (f == 7)    //checkbtn
@@ -292,12 +298,13 @@ namespace S8NavCC
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             try {
-                Process[] proc = Process.GetProcessesByName("adb");
-                proc[0].Kill();
+                mngServer(false);
                 Application.Exit();
             }
             catch (Exception) {
-                Application.Exit();
+                Process[] proc = Process.GetProcessesByName("adb");
+                proc[0].Kill();
+                Application.ExitThread();
             }
         }
 
@@ -387,9 +394,12 @@ namespace S8NavCC
                                 {
                                     int decValue = Convert.ToInt32(colorcode, 16);
                                     label4.Text = decValue.ToString();
-
-                                    if (textBox1.Text.Length == 6) { gobtn.Enabled = true; }
-                                    else { gobtn.Enabled = false; }
+                                    if (textBox1.Text.Length == 6) {
+                                        gobtn.Enabled = true;
+                                        Color curclr = ColorTranslator.FromHtml("#" + hextodec);
+                                        currentclr.BackColor = curclr;
+                                    }
+                                    else { gobtn.Enabled = false; currentclr.BackColor = Color.Transparent; }
                                 }
                             }
                         }
@@ -402,11 +412,11 @@ namespace S8NavCC
                     else if (!containsAnyLetter)
                     {
                         string s = textBox1.Text;
-                        if (s.Length > 1)
+                        if (s.Length > 1 && !s.Contains(" ") && s == s.IndexOfAny(badletters).ToString())
                         {
                             MessageBox.Show("Please only use hex color values!", "Unknown value(s) " + s[s.IndexOfAny(badletters) + (s.Length - 1)] + " in color code");
                         }
-                        else if (s.Length == 1)
+                        else if (s.Length == 1 && !s.Contains(" ") && s == s.IndexOfAny(badletters).ToString())
                         {
                             MessageBox.Show("Please only use hex color values!", "Unknown value(s) " + s[s.IndexOfAny(badletters)] + " in color code");
                         }
@@ -562,11 +572,61 @@ namespace S8NavCC
         }
         private void blackpb_Click(object sender, EventArgs e)
         {
+            curslctpb.Visible = true;
+            curslctpb.Top = blackpb.Location.Y - 2;
+            curslctpb.Left = blackpb.Location.X - 2;
             Preset("000000");   //black
+
+            FadeFX();
         }
         private void whitepb_Click(object sender, EventArgs e)
         {
+            curslctpb.Visible = true;
+            curslctpb.Top = whitepb.Location.Y - 2;
+            curslctpb.Left = whitepb.Location.X - 2;
             Preset("ffffff");   //white
+
+            FadeFX();
+        }
+        private void transppb_Click(object sender, EventArgs e)
+        {
+            curslctpb.Visible = true;
+            curslctpb.Top = transppb.Location.Y - 2;
+            curslctpb.Left = transppb.Location.X - 2;
+            Preset("f");
+            Preset("");
+            label4.Text = "16777216";   //transparent / dynamic  decimal color
+            gobtn.Enabled = true;
+
+            FadeFX();
+        }
+        bool fadefxloop = false;
+        private void FadeFX()
+        {
+            Thread t = new Thread(() =>
+            {
+                if (fadefxloop == false)
+                {
+                    fadefxloop = true;
+
+                    FadeOut fade = new FadeOut();
+                    for (int i = 100; i >= 0; i--)
+                    {
+                        Thread.Sleep(5);
+
+                        float opacityvalue = float.Parse(i.ToString()) / 100;   //This runs the fade function
+                        Image cur = fade.start(opacityvalue);                   //from FadeOut.cs and applies
+                        curslctpb.Image = cur;                                  //opacity to curslctpb.Image.
+
+                        if (i == 0) { fadefxloop = false; }
+                    }
+                }
+            })
+            { IsBackground = true };
+            if (!t.IsAlive)
+            {
+                t.Start();
+            }
         }
 
     }

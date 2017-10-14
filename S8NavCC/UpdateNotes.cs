@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,7 @@ namespace S8NavCC
         {
             this.TopMost = true;
             versionlbl.Text = Form1.GlobalVar.currentversion;
-        }
 
-        private void btnAlpha_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://en.wikipedia.org/wiki/RGBA_color_space");
         }
     }
 }

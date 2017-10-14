@@ -50,6 +50,8 @@
             this.whitepb = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.transppb = new System.Windows.Forms.PictureBox();
+            this.curslctpb = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBoxAlpha = new System.Windows.Forms.NumericUpDown();
@@ -58,12 +60,16 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.updatechklbl = new System.Windows.Forms.Label();
             this.chkupdatebtn = new System.Windows.Forms.Button();
+            this.currentclr = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.blackpb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.whitepb)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transppb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.curslctpb)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxAlpha)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentclr)).BeginInit();
             this.SuspendLayout();
             // 
             // checkbtn
@@ -87,7 +93,7 @@
             // 
             // helpbtn
             // 
-            this.helpbtn.Location = new System.Drawing.Point(12, 231);
+            this.helpbtn.Location = new System.Drawing.Point(3, 231);
             this.helpbtn.Name = "helpbtn";
             this.helpbtn.Size = new System.Drawing.Size(75, 23);
             this.helpbtn.TabIndex = 2;
@@ -221,7 +227,7 @@
             // blackpb
             // 
             this.blackpb.Image = ((System.Drawing.Image)(resources.GetObject("blackpb.Image")));
-            this.blackpb.Location = new System.Drawing.Point(26, 31);
+            this.blackpb.Location = new System.Drawing.Point(18, 31);
             this.blackpb.Name = "blackpb";
             this.blackpb.Size = new System.Drawing.Size(20, 20);
             this.blackpb.TabIndex = 18;
@@ -231,7 +237,7 @@
             // whitepb
             // 
             this.whitepb.Image = ((System.Drawing.Image)(resources.GetObject("whitepb.Image")));
-            this.whitepb.Location = new System.Drawing.Point(62, 31);
+            this.whitepb.Location = new System.Drawing.Point(44, 31);
             this.whitepb.Name = "whitepb";
             this.whitepb.Size = new System.Drawing.Size(20, 20);
             this.whitepb.TabIndex = 19;
@@ -254,11 +260,35 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.blackpb);
             this.panel1.Controls.Add(this.whitepb);
+            this.panel1.Controls.Add(this.transppb);
+            this.panel1.Controls.Add(this.curslctpb);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Location = new System.Drawing.Point(464, 42);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(114, 62);
             this.panel1.TabIndex = 21;
+            // 
+            // transppb
+            // 
+            this.transppb.Image = ((System.Drawing.Image)(resources.GetObject("transppb.Image")));
+            this.transppb.Location = new System.Drawing.Point(71, 31);
+            this.transppb.Name = "transppb";
+            this.transppb.Size = new System.Drawing.Size(20, 20);
+            this.transppb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.transppb.TabIndex = 21;
+            this.transppb.TabStop = false;
+            this.transppb.Click += new System.EventHandler(this.transppb_Click);
+            // 
+            // curslctpb
+            // 
+            this.curslctpb.Image = ((System.Drawing.Image)(resources.GetObject("curslctpb.Image")));
+            this.curslctpb.Location = new System.Drawing.Point(3, 3);
+            this.curslctpb.Name = "curslctpb";
+            this.curslctpb.Size = new System.Drawing.Size(24, 24);
+            this.curslctpb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.curslctpb.TabIndex = 22;
+            this.curslctpb.TabStop = false;
+            this.curslctpb.Visible = false;
             // 
             // panel2
             // 
@@ -271,6 +301,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.currentclr);
             this.panel3.Controls.Add(this.textBoxAlpha);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label7);
@@ -347,11 +378,21 @@
             this.chkupdatebtn.UseVisualStyleBackColor = true;
             this.chkupdatebtn.Click += new System.EventHandler(this.chkupdatebtn_Click);
             // 
+            // currentclr
+            // 
+            this.currentclr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.currentclr.Location = new System.Drawing.Point(135, 8);
+            this.currentclr.Name = "currentclr";
+            this.currentclr.Size = new System.Drawing.Size(20, 20);
+            this.currentclr.TabIndex = 8;
+            this.currentclr.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 258);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.chkupdatebtn);
             this.Controls.Add(this.updatechklbl);
             this.Controls.Add(this.appliedlbl);
@@ -365,7 +406,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.hexlinkbtn);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.helpbtn);
             this.Controls.Add(this.checkbtn);
             this.Controls.Add(this.panel1);
@@ -376,17 +416,20 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Samsung Galaxy S8  & Note 8 Navbar Color Changer by zed0seven";
+            this.Text = "Samsung Galaxy S8 & Note 8 Navbar Color Changer by zed0seven";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.blackpb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.whitepb)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transppb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.curslctpb)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxAlpha)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentclr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,6 +466,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown textBoxAlpha;
+        private System.Windows.Forms.PictureBox transppb;
+        private System.Windows.Forms.PictureBox curslctpb;
+        private System.Windows.Forms.PictureBox currentclr;
     }
 }
 
